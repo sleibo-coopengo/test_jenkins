@@ -1,5 +1,5 @@
 pipeline {
-
+  agent none
   environment {
     def TAG = get_tag()
   }
