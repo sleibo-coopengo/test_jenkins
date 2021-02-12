@@ -1,11 +1,5 @@
 pipeline {
 
-  agent {
-    docker {
-        image 'alpine-linux'
-    }
-  }
-
   environment {
     def TAG = get_tag()
   }
@@ -17,50 +11,20 @@ pipeline {
   stages {
     stage('Test coog image') {
       steps {
-        parallel ( 
-          "Paralell test 1": {
-            container('coog') {
-              script {
-                sh '''
-                  echo test 1
-                  '''
-              }
-            }
-          },
-          "Paralell test 2": {
-            container('coog') {
-              script {
-                sh '''
-                    echo test 2
-                  '''
-              }
-            }
-          }
-        )
+        script {
+        sh '''
+            echo test stage 1
+            '''
+        }
       }
     }
     stage('Coucou') {
       steps {
-        parallel ( 
-          "Paralell test 1": {
-            container('coog') {
-              script {
-                sh '''
-                  echo test 1
-                  '''
-              }
-            }
-          },
-          "Paralell test 2": {
-            container('coog') {
-              script {
-                sh '''
-                    echo test 2
-                  '''
-              }
-            }
-          }
-        )
+        script {
+        sh '''
+            echo test stage 2
+            '''
+        }
       }
     }
   }
